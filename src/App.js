@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Chessboard from "chessboardjsx";
+import StockFish from "./integrations/stockfish.js";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [position, setPosition] = useState("start");
+    const [isWhite, setIsWhite] = useState(true);
+  
+    return (
+      <div className="boardsContainer">
+        <div>
+            <button onClick={() => setIsWhite(!isWhite)}>
+                Flip
+            </button>
+        </div>
+        
+
+
+        <StockFish>
+          {({ position: sfPosition, onDrop }) => {
+            setPosition(sfPosition);
+            return (
+              <Chessboard
+                id="stockfish"
+                className="boardStyle"
+                position={position}
+                onDrop={onDrop}
+                orientation={isWhite ? "white" : "black"}
+              />
+            );
+          }}
+        </StockFish>
+      </div>
+    );
+  };
 
 export default App;

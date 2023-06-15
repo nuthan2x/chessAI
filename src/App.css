@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.boardsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+};
+
+.boardStyle {
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+};
